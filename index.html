@@ -6,7 +6,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -16,6 +15,19 @@
     />
 
     <title>Express Organizer</title>
+    <style>
+      body {
+        opacity: 0.8;
+        background: #7f7fd5;
+        background: -webkit-linear-gradient(
+          to right,
+          #91eae4,
+          #86a8e7,
+          #7f7fd5
+        );
+        background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -24,17 +36,23 @@
         <div class="col-lg-8">
           <form id="form">
             <div class="form-group">
-              <label for="todo">Things to promote excellence:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="todoInput"
-                placeholder="Type a task . . ."
-              />
-              <button type="submit" class="btn btn-primary">Post</button>
-              <small id="inspiration" class="form-text text-muted"
-                >Have an excellent and prosperous day.</small
-              >
+              <div class="mt-5 input-group">
+                <input
+                  type="text"
+                  id="todoInput"
+                  placeholder="Type a task . . . "
+                  class="w-75 form-control"
+                />
+                <span class="input-group-btn">
+                  <button
+                    type="submit"
+                    class="ml-2 btn btn-light"
+                    type="button"
+                  >
+                    Post
+                  </button>
+                </span>
+              </div>
             </div>
           </form>
         </div>
@@ -142,7 +160,7 @@
                         <div class="col-md-4" id="${ids.todoID}">${todo.todo}</div>
                         <div class="col-md-4"></div>
                         <div class="col-md-4 text-right">
-                        <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
+                        <button type="button" class="btn btn-info" id="${ids.editID}">Edit</button>
                         <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
                     </div>
                   </div>
