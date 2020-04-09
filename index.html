@@ -78,7 +78,9 @@
 
         const getTodos = function () {
           fetch("/getTodos", { method: "get" })
-            .then((response) => {})
+            .then((response) => {
+              return response.json();
+            })
             .then((data) => {
               console.log(data);
               displayTodos(data);
@@ -101,11 +103,11 @@
         };
 
         const buildTemplate = function (todo, ids) {
-          return `<li class="list-group-item">${listID}
+          return `<li class="list-group-item" id="${listID}">
                 <div class="row"> 
-                    <div class="col-md-4" id="${ids.todoID}">${todo.todo}</div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4" text-right>
+                        <div class="col-md-4" id="${ids.todoID}">${todo.todo}</div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right">
                         <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
                         <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
                     </div>
