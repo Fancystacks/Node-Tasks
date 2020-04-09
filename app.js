@@ -3,9 +3,14 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 const path = require('path');
+const Joi = require('joi');
 const db = require('./db');
 const collection = "todo";
 const PORT = 3000;
+
+const schema = Joi.object().keys({
+    todo : Joi.string().require()
+});
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
