@@ -24,8 +24,8 @@ app.get('/getTodos', function (req, res) {
 app.put('/:id', function (req, res) {
     const todoID = req.params.id;
     const userInput = req.body;
-
-    db.getDB.collection(collection).findOneAndUpdate({ _id: todo }, { $set: { todo: userInput.todo } }, { returnOriginal: false }, (err, result) => {
+// find a todo by ID and update with the user input
+    db.getDB().collection(collection).findOneAndUpdate({ _id: db.getPrimaryKey(todoID)}, { $set: { todo: userInput.todo } }, { returnOriginal: false }, (err, result) => {
         if (err)
             console.log(err);
         else
