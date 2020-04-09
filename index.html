@@ -47,6 +47,14 @@
         </div>
         <div class="col-lg-2"></div>
       </div>
+      <br />
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+          <div class="alert" role="alert" id="message"></div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
     </div>
 
     <script
@@ -69,6 +77,23 @@
         const display = $("#display");
         const todoInput = $("#todoInput");
         const form = $("#form");
+        const message = $("#message");
+        message.hide();
+
+        const displayMessage = function (flag, msg) {
+          // if there is a successful post
+          if (flag) {
+            message.removeClass("alert-danger");
+            message.addClass("alert-info");
+            message.html(msg);
+            message.show();
+          } else {
+            message.removeClass("alert-info");
+            message.addClass("alert-danger");
+            message.html(msg);
+            message.show();
+          }
+        };
 
         const getTodos = function () {
           fetch("/getTodos", { method: "get" })
