@@ -15,6 +15,9 @@ app.get('/getTodos', function (req, res) {
     db.getDB().collection(collection).find({}).toArray((err, documents) => {
         if (err)
         console.log(err);
+        else {
+            res.json(documents);
+        }
     })
 });
 
