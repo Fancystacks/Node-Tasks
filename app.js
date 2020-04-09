@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// gets todos from the database
 app.get('/getTodos', function (req, res) {
     db.getDB().collection(collection).find({}).toArray((err, documents) => {
         if (err)
@@ -24,7 +25,7 @@ app.get('/getTodos', function (req, res) {
 app.put('/:id', function (req, res) {
     const todoID = req.params.id;
     const userInput = req.body;
-// find a todo by ID and update with the user input
+// find a todo by ID and update with the user input & not return original before the update
     db.getDB().collection(collection).findOneAndUpdate({ _id: db.getPrimaryKey(todoID)}, { $set: { todo: userInput.todo } }, { returnOriginal: false }, (err, result) => {
         if (err)
             console.log(err);
