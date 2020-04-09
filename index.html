@@ -76,6 +76,17 @@
         const todoInput = $("#todoInput");
         const form = $("#form");
 
+        const getTodos = function () {
+          fetch("/getTodos", { method: "get" })
+            .then((response) => {})
+            .then((data) => {
+              console.log(data);
+              displayTodos(data);
+            });
+        };
+
+        getTodos();
+
         const clearForm = function () {
           todoInput.val("");
         };
