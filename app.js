@@ -19,7 +19,7 @@ app.get('/getTodos', function (req, res) {
         else {
             res.json(documents);
         }
-    })
+    });
 });
 
 app.put('/:id', function (req, res) {
@@ -31,8 +31,18 @@ app.put('/:id', function (req, res) {
             console.log(err);
         else
             res.json(result);
-    })
-})
+    });
+});
+
+app.post('/', function (req, res) {
+    const userInput = req.body;
+    db.getDB().collection(collection).insertOne(userInput, (err, result) => {
+        if (err)
+        console.log(err);
+        else 
+        res.json({ result : result, document : result.ops[0]});
+    });
+});
 
 db.connect((err) => {
     if (err) {
@@ -43,4 +53,4 @@ db.connect((err) => {
             console.log(`Server is listening on port ${PORT}...`);
         })
     }
-})
+});
