@@ -87,6 +87,17 @@
           todoInput.val("");
         };
 
+        const deleteTodo = function (todo, listID, deleteID) {
+          let deleteButton = $(`#${deleteID}`);
+          deleteButton.click(function () {
+            fetch(`/${todo._id}`, {
+              method: "delete",
+            }).then((response) => {
+              return response.json();
+            });
+          });
+        };
+
         const buildID = function (todo) {
           return {
             editID: "edit_" + todo._id,
