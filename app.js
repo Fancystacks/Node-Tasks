@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/getTodos', (req, res) = {
+app.get('/getTodos', function (req, res) {
     db.getDB().collection(collection).find({}).toArray((err, documents) => {
         if (err)
         console.log(err);
