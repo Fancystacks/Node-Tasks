@@ -88,9 +88,9 @@
         };
 
         const editTodo = function (todo, todoID, editID) {
-          let editButton = $(`${editID}`);
-          editButton.click(function () {
-            fetch(`/${todp._id}`, {
+          let editButton = $(`#${editID}`);
+          editButton.on("click", () => {
+            fetch(`/${todo._id}`, {
               method: "put",
               headers: {
                 "Content-Type": "application/json; charset=utf-8",
