@@ -22,6 +22,7 @@ app.get('/getTodos', function (req, res) {
     });
 });
 
+// update
 app.put('/:id', function (req, res) {
     const todoID = req.params.id;
     const userInput = req.body;
@@ -34,6 +35,7 @@ app.put('/:id', function (req, res) {
     });
 });
 
+// create
 app.post('/', function (req, res) {
     const userInput = req.body;
     db.getDB().collection(collection).insertOne(userInput, (err, result) => {
@@ -44,6 +46,7 @@ app.post('/', function (req, res) {
     });
 });
 
+// delete
 app.delete('/:id', function (req, res) {
     const todoID = req.params.id;
     db.getDB().collection(collection).findOneAndDelete({_id : db.getPrimaryKey(todoID)}, (err, result) => {
