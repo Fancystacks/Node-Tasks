@@ -87,14 +87,43 @@
           todoInput.val("");
         };
 
+        const editTodo = function (todo, todoID, editID) {
+          let editButton = $(`${editID}`);
+          editButton.click(function () {
+            fetch(`/${todp._id}`, {
+              method: "put",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+              },
+              body: JSON.stringify({ todo: todoInput.val() }),
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                if (data.ok == 1) {
+                  let todoIndex = $(`#${todoID}`);
+                  todoIndex.html(data.value.todo);
+                  clearForm();
+                }
+              });
+          });
+        };
+
         const deleteTodo = function (todo, listID, deleteID) {
           let deleteButton = $(`#${deleteID}`);
           deleteButton.click(function () {
             fetch(`/${todo._id}`, {
               method: "delete",
-            }).then((response) => {
-              return response.json();
-            });
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                if (data.ok == 1) {
+                  $(`#${listID}`).remove();
+                }
+              });
           });
         };
 
@@ -124,8 +153,8 @@
           data.forEach((todo) => {
             let ids = buildID(todo);
             display.append(buildTemplate(todo, ids));
-            // editTodo(todo, ids.todoID, ids.editID);
-            // deleteTodo(todo, ids.listID, ids.deleteID);
+            editTodo(todo, ids.todoID, ids.editID);
+            deleteTodo(todo, ids.listID, ids.deleteID);
           });
         };
 
@@ -145,8 +174,8 @@
               if (data.result.ok == 1 && data.result.n == 1) {
                 let ids = buildID(data.document);
                 display.append(buildTemplate(data.document, ids));
-                // editTodo(data.document, ids.todoID, ids.editID);
-                // deleteTodo(data.document, ids.listID, ids.deleteID);
+                editTodo(data.document, ids.todoID, ids.editID);
+                deleteTodo(data.document, ids.listID, ids.deleteID);
               }
               clearForm();
             });
