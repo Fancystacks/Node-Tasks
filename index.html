@@ -117,6 +117,29 @@
             // deleteTodo(todo, ids.listID, ids.deleteID);
           });
         };
+
+        form.submit(function (event) {
+          event.preventDefault();
+          fetch("/", {
+            method: "post",
+            body: JSON.stringify({ todo: todoInput.val() }),
+            headers: {
+              "Content-Type": "application/json; charset=urf-8",
+            },
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              if (data.result.ok == 1 && data.result.n == 1) {
+                let ids = buildID(data.document);
+                display.append(buildTemplate(data.document, ids));
+                // editTodo(data.document, ids.todoID, ids.editID);
+                // deleteTodo(data.document, ids.listID, ids.deleteID);
+              }
+              clearForm();
+            });
+        });
       });
     </script>
   </body>
