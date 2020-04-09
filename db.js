@@ -2,7 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 const dbName = "todo_mongodb";
 const url = "mongodb://localhost:27017";
-const mongoOptions = { useNewUrlParser: true };
+const mongoOptions = {useUnifiedTopology: true, useNewUrlParser: true};
 
 const state = {
     db: null
@@ -31,4 +31,4 @@ const getDB = () => {
     return state.db;
 }
 
-module.exports = {getDB, getPrimaryKey, connect}
+module.exports = {getDB, getPrimaryKey, connect};
