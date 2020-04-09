@@ -75,6 +75,40 @@
         const display = $("#display");
         const todoInput = $("#todoInput");
         const form = $("#form");
+
+        const clearForm = function () {
+          todoInput.val("");
+        };
+
+        const buildID = function (todo) {
+          return {
+            editID: "edit_" + todo._id,
+            deleteID: "delete_" + todo._id,
+            listID: "listItem_" + todo._id,
+            todoID: "todo_" + todo._id,
+          };
+        };
+
+        const buildTemplate = function (todo, ids) {
+          return `<li class="list-group-item">${listID}
+                <div class="row"> 
+                    <div class="col-md-4" id="${ids.todoID}">${todo.todo}</div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4" text-right>
+                        <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
+                        <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
+                    </div>
+                  </div>
+                </li>`;
+        };
+
+        const displayTodos = function (data) {
+          data.forEach((todo) => {
+            let ids = buildID(todo);
+            display.append(buildTemplate(todo, ids));
+            editTodo();
+          });
+        };
       });
     </script>
   </body>
