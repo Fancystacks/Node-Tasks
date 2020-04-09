@@ -14,17 +14,29 @@ app.get('/', (req, res) => {
 app.get('/getTodos', function (req, res) {
     db.getDB().collection(collection).find({}).toArray((err, documents) => {
         if (err)
-        console.log(err);
+            console.log(err);
         else {
             res.json(documents);
         }
     })
 });
 
+app.put('/:id', function (req, res) {
+    const todoID = req.params.id;
+    const userInput = req.body;
+
+    db.getDB.collection(collection).findOneAndUpdate({ _id: todo }, { $set: { todo: userInput.todo } }, { returnOriginal: false }, (err, result) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(result);
+    })
+})
+
 db.connect((err) => {
     if (err) {
-    console.log("Can't connect to database");
-    return;
+        console.log("Can't connect to database");
+        return;
     } else {
         app.listen(PORT, () => {
             console.log(`Server is listening on port ${PORT}...`);
