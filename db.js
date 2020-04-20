@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
-const dbName = "todo_mongodb";
-const url = "mongodb://localhost:27017";
+const dbName = "heroku_zkpsbt7v";
+const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 const mongoOptions = {useUnifiedTopology: true, useNewUrlParser: true};
 
 const state = {
