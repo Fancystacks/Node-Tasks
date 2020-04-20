@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
-const dbName = "heroku_zkpsbt7v";
+const dbName = "heroku_n1gdwwt1";
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 const mongoOptions = {useUnifiedTopology: true, useNewUrlParser: true};
 
