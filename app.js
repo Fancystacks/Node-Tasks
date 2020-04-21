@@ -5,7 +5,7 @@ app.use(bodyParser.json());
 const path = require('path');
 const db = require('./db');
 const collection = "todo";
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
