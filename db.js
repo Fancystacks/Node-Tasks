@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 const dbName = "heroku_n1gdwwt1";
-const url = "mongodb://<dbuser>:<dbpassword>@ds049198.mlab.com:49198/heroku_n1gdwwt1";
+const url = "mongodb://<user>:<password1>@ds049198.mlab.com:49198/heroku_n1gdwwt1";
 const mongoOptions = {useUnifiedTopology: true, useNewUrlParser: true};
 
 const state = {
